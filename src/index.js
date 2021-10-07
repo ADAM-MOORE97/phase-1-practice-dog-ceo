@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     fetch(breedURL).then(res=>res.json()).then(breedlist=>addBreeds(breedlist))
 
-    
+    document.getElementById('breed-dropdown').addEventListener('change', handleChange)
 
 });
 // console.log(dogs)
@@ -148,19 +148,18 @@ function changeColor(event){
 
     
 }
+
 function handleChange(e){
-    let allDogs = document.querySelectorAll('list.breeds');
-
-    allDogs.forEach(list => {
-        if(list.innerText.startsWith(e.target.value)){
-            list.style.display = ''
-        } else{
-            list.style.display = 'none'
+    const container = document.getElementById('dog-breeds')
+    const breeds= Array.from(container.querySelectorAll('li'))
+    for(const breed of breeds){
+        if(breed.textContent.charAt(0)===e.target.value){
+            breed.style.display = 'list-item'
+        }else{
+            breed.style.display = 'none'
         }
-    })
+    }
 }
-
-
 
 
 
